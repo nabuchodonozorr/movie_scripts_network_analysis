@@ -1,0 +1,1492 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d0" for="edge" attr.name="weight" attr.type="long"/>
+<graph edgedefault="undirected"><node id="BETTY"/>
+<node id="RITA"/>
+<node id="COCO"/>
+<node id="ADAM"/>
+<node id="RAY"/>
+<node id="GENE"/>
+<node id="LORRAINE"/>
+<node id="RECEPTIONIST"/>
+<node id="LIMO DRIVER"/>
+<node id="WOMAN'S VOICE"/>
+<node id="MR. ROQUE"/>
+<node id="THE MAN"/>
+<node id="CYNTHIA"/>
+<node id="VOICE"/>
+<node id="DETECTIVE HARRY MCKNIGHT"/>
+<node id="DETECTIVE NEAL DOMGAARD"/>
+<node id="DAN"/>
+<node id="HERB"/>
+<node id="DARK-HAIRED WOMAN"/>
+<node id="MR. DARBY"/>
+<node id="ROBERT SMITH"/>
+<node id="BILLY"/>
+<node id="JOE"/>
+<node id="LANEY"/>
+<node id="HAIRY-ARMED MAN"/>
+<node id="PAUL"/>
+<node id="SECRETARY"/>
+<node id="JAPANESE GARDENER"/>
+<node id="DIANE"/>
+<node id="OPERATOR"/>
+<node id="SERGEANT BAXTER"/>
+<node id="KENNY"/>
+<node id="PARAMOUNT GUARD"/>
+<node id="BOB"/>
+<node id="JIMMY"/>
+<node id="NICKI"/>
+<node id="SARAH JAMES"/>
+<node id="WALLY"/>
+<node id="CAROL"/>
+<node id="HANK"/>
+<node id="JASON"/>
+<node id="DRIVER"/>
+<node id="CAB DRIVER"/>
+<node id="IRENE"/>
+<node id="OLD LADY"/>
+<node id="MANAGER"/>
+<node id="MRS. LANOIS"/>
+<node id="ED"/>
+<node id="VOICES"/>
+<node id="ATTENDANT"/>
+<node id="ESPRESSO MAN"/>
+<node id="LUIGI CASTIGLIANE"/>
+<node id="VINCENZO CASTIGLIANE"/>
+<node id="LOUISE"/>
+<node id="HOTEL MANAGER"/>
+<node id="COWBOY"/>
+<node id="CORNELL DUMONT"/>
+<node id="MIDDLE-AGED WOMAN"/>
+<edge source="BETTY" target="RITA">
+  <data key="d0">18</data>
+</edge>
+<edge source="BETTY" target="COCO">
+  <data key="d0">6</data>
+</edge>
+<edge source="BETTY" target="RAY">
+  <data key="d0">4</data>
+</edge>
+<edge source="BETTY" target="RECEPTIONIST">
+  <data key="d0">4</data>
+</edge>
+<edge source="BETTY" target="ADAM">
+  <data key="d0">4</data>
+</edge>
+<edge source="BETTY" target="WOMAN'S VOICE">
+  <data key="d0">3</data>
+</edge>
+<edge source="BETTY" target="VOICE">
+  <data key="d0">3</data>
+</edge>
+<edge source="BETTY" target="DARK-HAIRED WOMAN">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="BILLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="JOE">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="LANEY">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="LIMO DRIVER">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="MR. ROQUE">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="CYNTHIA">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="PAUL">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="SECRETARY">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="DIANE">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="OPERATOR">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="SERGEANT BAXTER">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="PARAMOUNT GUARD">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="BOB">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="JIMMY">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="NICKI">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="SARAH JAMES">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="WALLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="CAROL">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="HANK">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="JASON">
+  <data key="d0">2</data>
+</edge>
+<edge source="BETTY" target="CAB DRIVER">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="IRENE">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="OLD LADY">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="MANAGER">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="MRS. LANOIS">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="GENE">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="LORRAINE">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="THE MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="BETTY" target="MIDDLE-AGED WOMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="RAY">
+  <data key="d0">3</data>
+</edge>
+<edge source="RITA" target="RECEPTIONIST">
+  <data key="d0">3</data>
+</edge>
+<edge source="RITA" target="WOMAN'S VOICE">
+  <data key="d0">3</data>
+</edge>
+<edge source="RITA" target="ADAM">
+  <data key="d0">3</data>
+</edge>
+<edge source="RITA" target="VOICE">
+  <data key="d0">3</data>
+</edge>
+<edge source="RITA" target="COCO">
+  <data key="d0">3</data>
+</edge>
+<edge source="RITA" target="BILLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="JOE">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="LANEY">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="LIMO DRIVER">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="MR. ROQUE">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="CYNTHIA">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="PAUL">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="SECRETARY">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="DIANE">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="OPERATOR">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="SERGEANT BAXTER">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="DARK-HAIRED WOMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="GENE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="LORRAINE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="THE MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="BOB">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="CAROL">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="HANK">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="JASON">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="JIMMY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="NICKI">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="PARAMOUNT GUARD">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="SARAH JAMES">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="WALLY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="MIDDLE-AGED WOMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="MANAGER">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="MRS. LANOIS">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="DARK-HAIRED WOMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="ADAM">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="BILLY">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="CYNTHIA">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="GENE">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="JOE">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="LANEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="LIMO DRIVER">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="LORRAINE">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="MR. ROQUE">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="RAY">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="RECEPTIONIST">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="THE MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="COCO" target="WOMAN'S VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="RAY">
+  <data key="d0">5</data>
+</edge>
+<edge source="ADAM" target="CYNTHIA">
+  <data key="d0">3</data>
+</edge>
+<edge source="ADAM" target="MR. DARBY">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="ROBERT SMITH">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="LIMO DRIVER">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="PAUL">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="SECRETARY">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="VOICE">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="JAPANESE GARDENER">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="GENE">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="LORRAINE">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="RECEPTIONIST">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="CAROL">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="HANK">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="JASON">
+  <data key="d0">2</data>
+</edge>
+<edge source="ADAM" target="ATTENDANT">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="ESPRESSO MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="LUIGI CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="VINCENZO CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="BILLY">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="JOE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="LANEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="MR. ROQUE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="THE MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="WOMAN'S VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="HOTEL MANAGER">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="COWBOY">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="BOB">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="JIMMY">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="NICKI">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="PARAMOUNT GUARD">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="SARAH JAMES">
+  <data key="d0">1</data>
+</edge>
+<edge source="ADAM" target="WALLY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="LIMO DRIVER">
+  <data key="d0">3</data>
+</edge>
+<edge source="RAY" target="RECEPTIONIST">
+  <data key="d0">3</data>
+</edge>
+<edge source="RAY" target="MR. DARBY">
+  <data key="d0">2</data>
+</edge>
+<edge source="RAY" target="ROBERT SMITH">
+  <data key="d0">2</data>
+</edge>
+<edge source="RAY" target="BILLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="RAY" target="JOE">
+  <data key="d0">2</data>
+</edge>
+<edge source="RAY" target="LANEY">
+  <data key="d0">2</data>
+</edge>
+<edge source="RAY" target="MR. ROQUE">
+  <data key="d0">2</data>
+</edge>
+<edge source="RAY" target="WOMAN'S VOICE">
+  <data key="d0">2</data>
+</edge>
+<edge source="RAY" target="CAROL">
+  <data key="d0">2</data>
+</edge>
+<edge source="RAY" target="HANK">
+  <data key="d0">2</data>
+</edge>
+<edge source="RAY" target="JASON">
+  <data key="d0">2</data>
+</edge>
+<edge source="RAY" target="ATTENDANT">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="ESPRESSO MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="LUIGI CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="VINCENZO CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="CYNTHIA">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="GENE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="LORRAINE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="THE MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="BOB">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="JIMMY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="NICKI">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="PARAMOUNT GUARD">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="SARAH JAMES">
+  <data key="d0">1</data>
+</edge>
+<edge source="RAY" target="WALLY">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="LORRAINE">
+  <data key="d0">5</data>
+</edge>
+<edge source="GENE" target="KENNY">
+  <data key="d0">2</data>
+</edge>
+<edge source="GENE" target="BILLY">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="CYNTHIA">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="JOE">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="LANEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="LIMO DRIVER">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="MR. ROQUE">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="RECEPTIONIST">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="THE MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="GENE" target="WOMAN'S VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="KENNY">
+  <data key="d0">2</data>
+</edge>
+<edge source="LORRAINE" target="BILLY">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="CYNTHIA">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="JOE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="LANEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="LIMO DRIVER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="MR. ROQUE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="RECEPTIONIST">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="THE MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LORRAINE" target="WOMAN'S VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="BILLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="RECEPTIONIST" target="JOE">
+  <data key="d0">2</data>
+</edge>
+<edge source="RECEPTIONIST" target="LANEY">
+  <data key="d0">2</data>
+</edge>
+<edge source="RECEPTIONIST" target="LIMO DRIVER">
+  <data key="d0">2</data>
+</edge>
+<edge source="RECEPTIONIST" target="MR. ROQUE">
+  <data key="d0">2</data>
+</edge>
+<edge source="RECEPTIONIST" target="WOMAN'S VOICE">
+  <data key="d0">2</data>
+</edge>
+<edge source="RECEPTIONIST" target="BOB">
+  <data key="d0">2</data>
+</edge>
+<edge source="RECEPTIONIST" target="JIMMY">
+  <data key="d0">2</data>
+</edge>
+<edge source="RECEPTIONIST" target="NICKI">
+  <data key="d0">2</data>
+</edge>
+<edge source="RECEPTIONIST" target="SARAH JAMES">
+  <data key="d0">2</data>
+</edge>
+<edge source="RECEPTIONIST" target="WALLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="RECEPTIONIST" target="CYNTHIA">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="THE MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="CAROL">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="HANK">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="JASON">
+  <data key="d0">1</data>
+</edge>
+<edge source="RECEPTIONIST" target="PARAMOUNT GUARD">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="BILLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="LIMO DRIVER" target="JOE">
+  <data key="d0">2</data>
+</edge>
+<edge source="LIMO DRIVER" target="LANEY">
+  <data key="d0">2</data>
+</edge>
+<edge source="LIMO DRIVER" target="MR. ROQUE">
+  <data key="d0">2</data>
+</edge>
+<edge source="LIMO DRIVER" target="WOMAN'S VOICE">
+  <data key="d0">2</data>
+</edge>
+<edge source="LIMO DRIVER" target="ATTENDANT">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="ESPRESSO MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="LUIGI CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="MR. DARBY">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="ROBERT SMITH">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="VINCENZO CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="CYNTHIA">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="THE MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIMO DRIVER" target="VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="BILLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="JOE">
+  <data key="d0">2</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="LANEY">
+  <data key="d0">2</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="MR. ROQUE">
+  <data key="d0">2</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="CYNTHIA">
+  <data key="d0">1</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="THE MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="WOMAN'S VOICE" target="VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. ROQUE" target="THE MAN">
+  <data key="d0">3</data>
+</edge>
+<edge source="MR. ROQUE" target="BILLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="MR. ROQUE" target="JOE">
+  <data key="d0">2</data>
+</edge>
+<edge source="MR. ROQUE" target="LANEY">
+  <data key="d0">2</data>
+</edge>
+<edge source="MR. ROQUE" target="CYNTHIA">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. ROQUE" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. ROQUE" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. ROQUE" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. ROQUE" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. ROQUE" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. ROQUE" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. ROQUE" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. ROQUE" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. ROQUE" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. ROQUE" target="VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="HAIRY-ARMED MAN">
+  <data key="d0">2</data>
+</edge>
+<edge source="THE MAN" target="BILLY">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="CYNTHIA">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="JOE">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="LANEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="THE MAN" target="VOICE">
+  <data key="d0">1</data>
+</edge>
+<edge source="CYNTHIA" target="PAUL">
+  <data key="d0">2</data>
+</edge>
+<edge source="CYNTHIA" target="SECRETARY">
+  <data key="d0">2</data>
+</edge>
+<edge source="CYNTHIA" target="VOICE">
+  <data key="d0">2</data>
+</edge>
+<edge source="CYNTHIA" target="BILLY">
+  <data key="d0">1</data>
+</edge>
+<edge source="CYNTHIA" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="CYNTHIA" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="CYNTHIA" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="CYNTHIA" target="JOE">
+  <data key="d0">1</data>
+</edge>
+<edge source="CYNTHIA" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="CYNTHIA" target="LANEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="CYNTHIA" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="CYNTHIA" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="CYNTHIA" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="VOICE" target="PAUL">
+  <data key="d0">2</data>
+</edge>
+<edge source="VOICE" target="SECRETARY">
+  <data key="d0">2</data>
+</edge>
+<edge source="VOICE" target="DIANE">
+  <data key="d0">2</data>
+</edge>
+<edge source="VOICE" target="OPERATOR">
+  <data key="d0">2</data>
+</edge>
+<edge source="VOICE" target="SERGEANT BAXTER">
+  <data key="d0">2</data>
+</edge>
+<edge source="VOICE" target="BILLY">
+  <data key="d0">1</data>
+</edge>
+<edge source="VOICE" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="VOICE" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="VOICE" target="JOE">
+  <data key="d0">1</data>
+</edge>
+<edge source="VOICE" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="VOICE" target="LANEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="VOICE" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="DETECTIVE HARRY MCKNIGHT" target="DETECTIVE NEAL DOMGAARD">
+  <data key="d0">2</data>
+</edge>
+<edge source="DAN" target="HERB">
+  <data key="d0">2</data>
+</edge>
+<edge source="DARK-HAIRED WOMAN" target="DRIVER">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. DARBY" target="ROBERT SMITH">
+  <data key="d0">2</data>
+</edge>
+<edge source="MR. DARBY" target="ATTENDANT">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. DARBY" target="ESPRESSO MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. DARBY" target="LUIGI CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="MR. DARBY" target="VINCENZO CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ROBERT SMITH" target="ATTENDANT">
+  <data key="d0">1</data>
+</edge>
+<edge source="ROBERT SMITH" target="ESPRESSO MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="ROBERT SMITH" target="LUIGI CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ROBERT SMITH" target="VINCENZO CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="BILLY" target="JOE">
+  <data key="d0">2</data>
+</edge>
+<edge source="BILLY" target="LANEY">
+  <data key="d0">2</data>
+</edge>
+<edge source="BILLY" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="BILLY" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="BILLY" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="BILLY" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="BILLY" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="BILLY" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="BILLY" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="BILLY" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="BILLY" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="JOE" target="LANEY">
+  <data key="d0">2</data>
+</edge>
+<edge source="JOE" target="ED">
+  <data key="d0">1</data>
+</edge>
+<edge source="JOE" target="VOICES">
+  <data key="d0">1</data>
+</edge>
+<edge source="JOE" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="JOE" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="JOE" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="JOE" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="JOE" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="JOE" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="JOE" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="JOE" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="JOE" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LANEY" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LANEY" target="HAIRY-ARMED MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="LANEY" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LANEY" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="LANEY" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LANEY" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="LANEY" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="LANEY" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="LANEY" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="HAIRY-ARMED MAN" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="HAIRY-ARMED MAN" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="HAIRY-ARMED MAN" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="HAIRY-ARMED MAN" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="HAIRY-ARMED MAN" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="HAIRY-ARMED MAN" target="PAUL">
+  <data key="d0">1</data>
+</edge>
+<edge source="HAIRY-ARMED MAN" target="SECRETARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="HAIRY-ARMED MAN" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="PAUL" target="SECRETARY">
+  <data key="d0">2</data>
+</edge>
+<edge source="PAUL" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="PAUL" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="PAUL" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="PAUL" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="PAUL" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="PAUL" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="SECRETARY" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="SECRETARY" target="JAPANESE GARDENER">
+  <data key="d0">1</data>
+</edge>
+<edge source="SECRETARY" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="SECRETARY" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="SECRETARY" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="SECRETARY" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="JAPANESE GARDENER" target="DIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="JAPANESE GARDENER" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="JAPANESE GARDENER" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="JAPANESE GARDENER" target="OPERATOR">
+  <data key="d0">1</data>
+</edge>
+<edge source="JAPANESE GARDENER" target="SERGEANT BAXTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="DIANE" target="OPERATOR">
+  <data key="d0">2</data>
+</edge>
+<edge source="DIANE" target="SERGEANT BAXTER">
+  <data key="d0">2</data>
+</edge>
+<edge source="DIANE" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="DIANE" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="OPERATOR" target="SERGEANT BAXTER">
+  <data key="d0">2</data>
+</edge>
+<edge source="OPERATOR" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="OPERATOR" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="SERGEANT BAXTER" target="KENNY">
+  <data key="d0">1</data>
+</edge>
+<edge source="SERGEANT BAXTER" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="KENNY" target="LOUISE">
+  <data key="d0">1</data>
+</edge>
+<edge source="PARAMOUNT GUARD" target="BOB">
+  <data key="d0">1</data>
+</edge>
+<edge source="PARAMOUNT GUARD" target="CAROL">
+  <data key="d0">1</data>
+</edge>
+<edge source="PARAMOUNT GUARD" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="PARAMOUNT GUARD" target="HANK">
+  <data key="d0">1</data>
+</edge>
+<edge source="PARAMOUNT GUARD" target="JASON">
+  <data key="d0">1</data>
+</edge>
+<edge source="PARAMOUNT GUARD" target="JIMMY">
+  <data key="d0">1</data>
+</edge>
+<edge source="PARAMOUNT GUARD" target="NICKI">
+  <data key="d0">1</data>
+</edge>
+<edge source="PARAMOUNT GUARD" target="SARAH JAMES">
+  <data key="d0">1</data>
+</edge>
+<edge source="PARAMOUNT GUARD" target="WALLY">
+  <data key="d0">1</data>
+</edge>
+<edge source="BOB" target="JIMMY">
+  <data key="d0">2</data>
+</edge>
+<edge source="BOB" target="NICKI">
+  <data key="d0">2</data>
+</edge>
+<edge source="BOB" target="SARAH JAMES">
+  <data key="d0">2</data>
+</edge>
+<edge source="BOB" target="WALLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="BOB" target="CAROL">
+  <data key="d0">1</data>
+</edge>
+<edge source="BOB" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="BOB" target="HANK">
+  <data key="d0">1</data>
+</edge>
+<edge source="BOB" target="JASON">
+  <data key="d0">1</data>
+</edge>
+<edge source="JIMMY" target="NICKI">
+  <data key="d0">2</data>
+</edge>
+<edge source="JIMMY" target="SARAH JAMES">
+  <data key="d0">2</data>
+</edge>
+<edge source="JIMMY" target="WALLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="JIMMY" target="CAROL">
+  <data key="d0">1</data>
+</edge>
+<edge source="JIMMY" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="JIMMY" target="HANK">
+  <data key="d0">1</data>
+</edge>
+<edge source="JIMMY" target="JASON">
+  <data key="d0">1</data>
+</edge>
+<edge source="NICKI" target="SARAH JAMES">
+  <data key="d0">2</data>
+</edge>
+<edge source="NICKI" target="WALLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="NICKI" target="CAROL">
+  <data key="d0">1</data>
+</edge>
+<edge source="NICKI" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="NICKI" target="HANK">
+  <data key="d0">1</data>
+</edge>
+<edge source="NICKI" target="JASON">
+  <data key="d0">1</data>
+</edge>
+<edge source="SARAH JAMES" target="WALLY">
+  <data key="d0">2</data>
+</edge>
+<edge source="SARAH JAMES" target="CAROL">
+  <data key="d0">1</data>
+</edge>
+<edge source="SARAH JAMES" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="SARAH JAMES" target="HANK">
+  <data key="d0">1</data>
+</edge>
+<edge source="SARAH JAMES" target="JASON">
+  <data key="d0">1</data>
+</edge>
+<edge source="WALLY" target="CAROL">
+  <data key="d0">1</data>
+</edge>
+<edge source="WALLY" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="WALLY" target="HANK">
+  <data key="d0">1</data>
+</edge>
+<edge source="WALLY" target="JASON">
+  <data key="d0">1</data>
+</edge>
+<edge source="CAROL" target="HANK">
+  <data key="d0">2</data>
+</edge>
+<edge source="CAROL" target="JASON">
+  <data key="d0">2</data>
+</edge>
+<edge source="CAROL" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="HANK" target="JASON">
+  <data key="d0">2</data>
+</edge>
+<edge source="HANK" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="JASON" target="CORNELL DUMONT">
+  <data key="d0">1</data>
+</edge>
+<edge source="CAB DRIVER" target="IRENE">
+  <data key="d0">1</data>
+</edge>
+<edge source="CAB DRIVER" target="OLD LADY">
+  <data key="d0">1</data>
+</edge>
+<edge source="IRENE" target="OLD LADY">
+  <data key="d0">1</data>
+</edge>
+<edge source="MANAGER" target="MRS. LANOIS">
+  <data key="d0">1</data>
+</edge>
+<edge source="ED" target="VOICES">
+  <data key="d0">1</data>
+</edge>
+<edge source="ATTENDANT" target="ESPRESSO MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="ATTENDANT" target="LUIGI CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ATTENDANT" target="VINCENZO CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ESPRESSO MAN" target="LUIGI CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="ESPRESSO MAN" target="VINCENZO CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LUIGI CASTIGLIANE" target="VINCENZO CASTIGLIANE">
+  <data key="d0">1</data>
+</edge>
+</graph></graphml>
