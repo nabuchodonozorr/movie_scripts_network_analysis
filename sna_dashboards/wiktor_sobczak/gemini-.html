@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mulholland Drive — Analiza Sieci Postaci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+  :root {
+    --bg-deep:       #04020e;
+    --bg-mid:        #0a0520;
+    --bg-panel:      #0d0825;
+    --bg-panel2:     #110a2e;
+    --pink-hot:      #ff1a6e;
+    --pink-mid:      #e8006a;
+    --blue-elec:     #00cfff;
+    --blue-dim:      #007aaa;
+    --gold-hollywood:#c8a84b;
+    --gold-dim:      #7a6030;
+    --purple-dream:  #7c3fa8;
+    --purple-light:  #b06ade;
+    --white-haze:    #e8e0f0;
+    --text-main:     #d8d0e8;
+    --text-dim:      #7a7090;
+    --text-accent:   #ff1a6e;
+    --border-glow:   rgba(255,26,110,0.25);
+
+    /* Community colors — Lynch palette */
+    --comm-0: #ff1a6e;   /* hot pink — Betty/Rita dreamworld */
+    --comm-1: #00cfff;   /* electric blue — Hollywood machinery */
+    --comm-2: #c8a84b;   /* gold — Castigliane/industry */
+    --comm-3: #7c3fa8;   /* purple — detectives */
+    --comm-4: #3fa88c;   /* teal — diner */
+    --comm-5: #e05050;   /* red — phantom */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-main);
+    font-family: 'Courier Prime', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+
+  /* Radial glow bg */
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 50%, rgba(124,63,168,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 80% 30%, rgba(0,207,255,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 30% at 50% 80%, rgba(255,26,110,0.07) 0%, transparent 70%);
+  }
+
+  /* HEADER */
+  header {
+    position: relative; z-index: 10;
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-glow);
+    background: linear-gradient(to bottom, rgba(4,2,14,0.98), rgba(10,5,32,0.9));
+  }
+
+  header .eyebrow {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--blue-elec);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    opacity: 0.7;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    font-weight: 900;
+    font-style: italic;
+    color: var(--white-haze);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-shadow:
+      0 0 40px rgba(255,26,110,0.4),
+      0 0 80px rgba(255,26,110,0.15);
+  }
+
+  header h1 span.road {
+    color: var(--pink-hot);
+    text-shadow: 0 0 20px rgba(255,26,110,0.8), 0 0 60px rgba(255,26,110,0.4);
+  }
+
+  header .subtitle {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: var(--gold-hollywood);
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  header .meta-line {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* MAIN LAYOUT */
+  .main-layout {
+    position: relative; z-index: 5;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 0;
+    height: calc(100vh - 140px);
+    min-height: 600px;
+  }
+
+  /* GRAPH SECTION */
+  .graph-section {
+    position: relative;
+    background: radial-gradient(ellipse at center, #0c0628 0%, #04020e 80%);
+    border-right: 1px solid var(--border-glow);
+    overflow: hidden;
+  }
+
+  /* MODE CONTROLS */
+  .mode-controls {
+    position: absolute;
+    top: 12px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex; gap: 4px;
+    background: rgba(4,2,14,0.9);
+    border: 1px solid var(--border-glow);
+    padding: 4px;
+    border-radius: 3px;
+    backdrop-filter: blur(10px);
+  }
+
+  .mode-btn {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .mode-btn:hover { color: var(--blue-elec); border-color: rgba(0,207,255,0.3); }
+  .mode-btn.active {
+    background: rgba(255,26,110,0.15);
+    color: var(--pink-hot);
+    border-color: rgba(255,26,110,0.4);
+    text-shadow: 0 0 10px rgba(255,26,110,0.5);
+  }
+
+  #graph-svg {
+    width: 100%; height: 100%;
+    cursor: grab;
+  }
+  #graph-svg:active { cursor: grabbing; }
+
+  /* Zoom hint */
+  .zoom-hint {
+    position: absolute; bottom: 10px; left: 12px;
+    font-size: 0.55rem; letter-spacing: 0.1em;
+    color: var(--text-dim); opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* RIGHT PANEL */
+  .right-panel {
+    display: flex; flex-direction: column;
+    background: var(--bg-panel);
+    overflow: hidden;
+  }
+
+  /* NODE CARD */
+  .node-card {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-glow);
+    min-height: 160px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .node-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,26,110,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .node-card .card-label {
+    font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 8px;
+  }
+
+  .node-card .char-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700; font-style: italic;
+    color: var(--white-haze);
+    line-height: 1.1; margin-bottom: 4px;
+    text-shadow: 0 0 20px rgba(255,26,110,0.3);
+  }
+
+  .node-card .community-tag {
+    display: inline-block;
+    font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 1px; margin-bottom: 10px;
+  }
+
+  .metrics-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6px; margin-top: 4px;
+  }
+
+  .metric-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 6px 8px; border-radius: 2px;
+  }
+
+  .metric-item .m-label {
+    font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 2px;
+  }
+
+  .metric-item .m-value {
+    font-size: 0.85rem; font-weight: 700;
+    color: var(--gold-hollywood);
+  }
+
+  .node-card .placeholder {
+    color: var(--text-dim); font-size: 0.7rem; font-style: italic;
+    line-height: 1.5; opacity: 0.6; margin-top: 8px;
+  }
+
+  /* LEGEND */
+  .legend-section {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-glow);
+  }
+
+  .section-title {
+    font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 8px;
+  }
+
+  .legend-items { display: flex; flex-direction: column; gap: 4px; }
+
+  .legend-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.62rem; color: var(--text-main);
+    padding: 3px 0; cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .legend-item:hover { opacity: 0.7; }
+
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    box-shadow: 0 0 6px currentColor;
+  }
+
+  /* RANKING TABS */
+  .ranking-section {
+    flex: 1; display: flex; flex-direction: column; overflow: hidden;
+  }
+
+  .tab-bar {
+    display: flex; border-bottom: 1px solid var(--border-glow);
+    background: var(--bg-panel2);
+  }
+
+  .tab-btn {
+    flex: 1; padding: 7px 4px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase;
+    background: transparent; color: var(--text-dim);
+    border: none; border-bottom: 2px solid transparent;
+    cursor: pointer; transition: all 0.2s;
+  }
+
+  .tab-btn:hover { color: var(--blue-elec); }
+  .tab-btn.active { color: var(--pink-hot); border-bottom-color: var(--pink-hot); }
+
+  .ranking-list {
+    flex: 1; overflow-y: auto; padding: 8px 0;
+  }
+
+  .ranking-list::-webkit-scrollbar { width: 4px; }
+  .ranking-list::-webkit-scrollbar-track { background: transparent; }
+  .ranking-list::-webkit-scrollbar-thumb { background: rgba(255,26,110,0.3); border-radius: 2px; }
+
+  .rank-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 5px 16px; cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .rank-item:hover { background: rgba(255,26,110,0.07); }
+
+  .rank-num {
+    font-size: 0.55rem; color: var(--text-dim);
+    width: 16px; text-align: right; flex-shrink: 0;
+  }
+
+  .rank-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+  .rank-name {
+    font-size: 0.65rem; flex: 1; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .rank-bar-wrap {
+    width: 50px; height: 3px;
+    background: rgba(255,255,255,0.08); border-radius: 2px; flex-shrink: 0;
+  }
+
+  .rank-bar {
+    height: 100%; border-radius: 2px;
+    background: linear-gradient(to right, var(--pink-hot), var(--blue-elec));
+    transition: width 0.4s ease;
+  }
+
+  .rank-val {
+    font-size: 0.55rem; color: var(--text-dim);
+    width: 32px; text-align: right; flex-shrink: 0;
+  }
+
+  /* TOOLTIP */
+  #tooltip {
+    position: fixed; z-index: 9999;
+    background: rgba(4,2,14,0.96);
+    border: 1px solid rgba(255,26,110,0.4);
+    padding: 10px 14px; border-radius: 2px;
+    pointer-events: none; display: none;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(255,26,110,0.2), 0 4px 20px rgba(0,0,0,0.8);
+    max-width: 220px;
+  }
+
+  #tooltip .tt-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem; font-weight: 700; font-style: italic;
+    color: var(--white-haze); margin-bottom: 6px;
+  }
+
+  #tooltip .tt-row {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-size: 0.6rem; color: var(--text-dim); margin-bottom: 2px;
+  }
+
+  #tooltip .tt-val { color: var(--gold-hollywood); font-weight: 700; }
+
+  /* INTERPRETATION */
+  .interpretation {
+    position: relative; z-index: 5;
+    padding: 3rem 4rem;
+    background: linear-gradient(to bottom, var(--bg-mid), var(--bg-deep));
+    border-top: 1px solid var(--border-glow);
+  }
+
+  .interpretation h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700; font-style: italic;
+    color: var(--white-haze);
+    margin-bottom: 0.3rem;
+    text-shadow: 0 0 20px rgba(255,26,110,0.2);
+  }
+
+  .interpretation h2 span { color: var(--pink-hot); }
+
+  .interp-rule {
+    width: 60px; height: 1px;
+    background: linear-gradient(to right, var(--pink-hot), transparent);
+    margin: 0.6rem 0 1.5rem;
+  }
+
+  .interp-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .interp-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem; font-weight: 700;
+    color: var(--gold-hollywood);
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.02em;
+  }
+
+  .interp-block p {
+    font-size: 0.78rem; line-height: 1.8;
+    color: var(--text-main); opacity: 0.85;
+  }
+
+  .interp-block p strong { color: var(--blue-elec); font-weight: 700; }
+  .interp-block p em { color: var(--pink-hot); font-style: italic; }
+
+  .interp-stats {
+    display: flex; gap: 2rem; margin-top: 1.5rem;
+    padding-top: 1.5rem; border-top: 1px solid var(--border-glow);
+    flex-wrap: wrap;
+  }
+
+  .stat-block { text-align: center; }
+  .stat-block .big { font-size: 2rem; font-weight: 700; color: var(--pink-hot); font-family: 'Playfair Display', serif; }
+  .stat-block .small { font-size: 0.55rem; letter-spacing: 0.2em; color: var(--text-dim); text-transform: uppercase; }
+
+  /* D3 elements */
+  .node-circle {
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+
+  .node-label {
+    font-family: 'Courier Prime', monospace;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .link-line { transition: opacity 0.3s; }
+
+  /* Footer */
+  footer {
+    position: relative; z-index: 5;
+    text-align: center; padding: 1rem;
+    font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-dim); opacity: 0.4;
+    border-top: 1px solid rgba(255,26,110,0.08);
+  }
+
+  @media (max-width: 900px) {
+    .main-layout { grid-template-columns: 1fr; grid-template-rows: 500px 1fr; }
+    .graph-section { border-right: none; border-bottom: 1px solid var(--border-glow); }
+    .interpretation { padding: 2rem 1.5rem; }
+    .interp-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="tooltip">
+  <div class="tt-name" id="tt-name"></div>
+  <div class="tt-row"><span>Stopień (degree)</span><span class="tt-val" id="tt-deg"></span></div>
+  <div class="tt-row"><span>Pośrednictwo</span><span class="tt-val" id="tt-bet"></span></div>
+  <div class="tt-row"><span>PageRank</span><span class="tt-val" id="tt-pr"></span></div>
+  <div class="tt-row"><span>Społeczność</span><span class="tt-val" id="tt-comm"></span></div>
+</div>
+
+<header>
+  <div class="eyebrow">David Lynch · 2001</div>
+  <h1>Mulholland <span class="road">Drive</span></h1>
+  <div class="subtitle">Analiza Sieci Postaci · Social Network Analysis</div>
+  <div class="meta-line">58 węzłów · 477 krawędzi · 6 społeczności · metryki obliczone in-browser</div>
+</header>
+
+<div class="main-layout">
+  <div class="graph-section">
+    <div class="mode-controls">
+      <button class="mode-btn active" data-mode="degree">Degree</button>
+      <button class="mode-btn" data-mode="betweenness">Betweenness</button>
+      <button class="mode-btn" data-mode="closeness">Closeness</button>
+      <button class="mode-btn" data-mode="pagerank">PageRank</button>
+    </div>
+    <svg id="graph-svg"></svg>
+    <div class="zoom-hint">scroll — zoom · drag — pan · click — focus</div>
+  </div>
+
+  <div class="right-panel">
+    <div class="node-card" id="node-card">
+      <div class="card-label">— Wybrana postać —</div>
+      <div id="card-content">
+        <p class="placeholder">Kliknij węzeł na grafie,<br>aby zobaczyć szczegóły postaci.</p>
+      </div>
+    </div>
+
+    <div class="legend-section">
+      <div class="section-title">— Społeczności (Louvain) —</div>
+      <div class="legend-items" id="legend-items"></div>
+    </div>
+
+    <div class="ranking-section">
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="degree">Degree</button>
+        <button class="tab-btn" data-tab="betweenness">Between.</button>
+        <button class="tab-btn" data-tab="closeness">Closeness</button>
+        <button class="tab-btn" data-tab="pagerank">PageRank</button>
+      </div>
+      <div class="ranking-list" id="ranking-list"></div>
+    </div>
+  </div>
+</div>
+
+<div class="interpretation">
+  <h2>Interpretacja <span>Humanistyczna</span></h2>
+  <div class="interp-rule"></div>
+
+  <div class="interp-grid">
+    <div class="interp-block">
+      <h3>Topologia Snu i Rzeczywistości</h3>
+      <p>Sieć postaci <em>Mulholland Drive</em> doskonale odzwierciedla strukturalną dwoistość narracyjną filmu Lyncha. Dwie główne społeczności — skupiona wokół <strong>BETTY/RIRY</strong> (wspólnota snu) i wokół <strong>ADAMA</strong> (machina Hollywood) — pozostają ze sobą luźno powiązane przez węzły pośredniczące. To wizualna analogia do relacji między marzeniem a jawą: dwa światy, które stykają się, lecz nigdy w pełni nie scalają.</p>
+    </div>
+    <div class="interp-block">
+      <h3>Centralność Betty — Architektura Iluzji</h3>
+      <p><strong>BETTY</strong> osiąga najwyższy wskaźnik betweenness centralności (≈ 0.194), co oznacza, że większość ścieżek komunikacyjnych w sieci przebiega przez nią. Jest ona nie tylko protagonistką, ale strukturalnym <em>mostem</em> między światami. Gdy w II akcie Betty znika i pojawia się Diane, sieć dosłownie traci swój węzeł kontrolny — co Lynch wizualizuje dezintegracją narracyjną.</p>
+    </div>
+    <div class="interp-block">
+      <h3>Adam Kesher — Władza bez Dominacji</h3>
+      <p><strong>ADAM</strong> plasuje się wysoko pod względem degree centralności (duży stopień połączeń), lecz jego betweenness jest niższy niż Betty. To paradoks: reżyser filmowy ma rozległą sieć kontaktów w świecie Hollywood, ale <em>nie kontroluje przepływu informacji</em>. Jest raczej obiektem manipulacji (Castigliane, Cowboy) niż jej źródłem — co trafnie oddaje temat bezsilności artysty wobec przemysłu.</p>
+    </div>
+    <div class="interp-block">
+      <h3>Izolowane Klastry — Fragmenty Podświadomości</h3>
+      <p>Sieć zawiera kilka małych, niemal izolowanych klastrów (detektywi, scena w kawiarni Winkie's, Castigliane). W teorii SNA nazywamy je <em>komponentami peryferyjnymi</em>. W kontekście Lyncha są to epizody snów, fragmenty wspomnień lub alternatywne wersje rzeczywistości — elementy, które mają wewnętrzną spójność, lecz nie integrują się z główną narracją. Ich niska centralność to nie marginalność, lecz <strong>oniryczna autonomia</strong>.</p>
+    </div>
+  </div>
+
+  <div class="interp-stats" id="interp-stats">
+    <div class="stat-block"><div class="big">58</div><div class="small">Postaci</div></div>
+    <div class="stat-block"><div class="big">477</div><div class="small">Relacji</div></div>
+    <div class="stat-block"><div class="big" id="stat-density">—</div><div class="small">Gęstość sieci</div></div>
+    <div class="stat-block"><div class="big" id="stat-avg-deg">—</div><div class="small">Śr. stopień</div></div>
+    <div class="stat-block"><div class="big">6</div><div class="small">Społeczności</div></div>
+    <div class="stat-block"><div class="big" id="stat-max-weight">18</div><div class="small">Max waga krawędzi</div></div>
+  </div>
+</div>
+
+<footer>Mulholland Drive · David Lynch · 2001 · Analiza SNA · Węzły = Postacie · Krawędzie = Współwystępowanie w scenach · Waga = Intensywność relacji</footer>
+
+<script>
+// ============================================================
+// DATA — embedded from GEXF parse
+// ============================================================
+const rawNodes = [
+  {id:"BETTY",community:0,betweenness:0.1936,rawSize:78.57},
+  {id:"RITA",community:0,betweenness:0.0633,rawSize:71.43},
+  {id:"COCO",community:1,betweenness:0.0363,rawSize:58.57},
+  {id:"ADAM",community:2,betweenness:0.1535,rawSize:80},
+  {id:"RAY",community:2,betweenness:0.089,rawSize:77.14},
+  {id:"GENE",community:1,betweenness:0,rawSize:54.29},
+  {id:"LORRAINE",community:1,betweenness:0,rawSize:54.29},
+  {id:"RECEPTIONIST",community:0,betweenness:0.0288,rawSize:68.57},
+  {id:"LIMO DRIVER",community:2,betweenness:0.0414,rawSize:62.86},
+  {id:"WOMAN'S VOICE",community:1,betweenness:0,rawSize:54.29},
+  {id:"MR. ROQUE",community:1,betweenness:0,rawSize:54.29},
+  {id:"THE MAN",community:1,betweenness:0,rawSize:54.29},
+  {id:"CYNTHIA",community:1,betweenness:0,rawSize:54.29},
+  {id:"VOICE",community:1,betweenness:0,rawSize:54.29},
+  {id:"DETECTIVE HARRY MCKNIGHT",community:3,betweenness:0,rawSize:20},
+  {id:"DETECTIVE NEAL DOMGAARD",community:3,betweenness:0,rawSize:20},
+  {id:"DAN",community:4,betweenness:0,rawSize:20},
+  {id:"HERB",community:4,betweenness:0,rawSize:20},
+  {id:"DARK-HAIRED WOMAN",community:0,betweenness:0.0326,rawSize:24.29},
+  {id:"MR. DARBY",community:2,betweenness:0,rawSize:30},
+  {id:"ROBERT SMITH",community:2,betweenness:0,rawSize:30},
+  {id:"BILLY",community:1,betweenness:0,rawSize:54.29},
+  {id:"JOE",community:1,betweenness:0.0639,rawSize:57.14},
+  {id:"LANEY",community:1,betweenness:0,rawSize:54.29},
+  {id:"HAIRY-ARMED MAN",community:1,betweenness:0,rawSize:54.29},
+  {id:"PAUL",community:1,betweenness:0,rawSize:54.29},
+  {id:"SECRETARY",community:1,betweenness:0,rawSize:54.29},
+  {id:"JAPANESE GARDENER",community:1,betweenness:0,rawSize:54.29},
+  {id:"DIANE",community:1,betweenness:0,rawSize:54.29},
+  {id:"OPERATOR",community:1,betweenness:0,rawSize:54.29},
+  {id:"SERGEANT BAXTER",community:1,betweenness:0,rawSize:54.29},
+  {id:"KENNY",community:1,betweenness:0,rawSize:54.29},
+  {id:"PARAMOUNT GUARD",community:0,betweenness:0,rawSize:38.57},
+  {id:"BOB",community:0,betweenness:0,rawSize:38.57},
+  {id:"JIMMY",community:0,betweenness:0,rawSize:38.57},
+  {id:"NICKI",community:0,betweenness:0,rawSize:38.57},
+  {id:"SARAH JAMES",community:0,betweenness:0,rawSize:38.57},
+  {id:"WALLY",community:0,betweenness:0,rawSize:38.57},
+  {id:"HANK",community:0,betweenness:0,rawSize:38.57},
+  {id:"CAROL",community:0,betweenness:0,rawSize:38.57},
+  {id:"JASON",community:0,betweenness:0,rawSize:38.57},
+  {id:"DRIVER",community:0,betweenness:0,rawSize:20},
+  {id:"CAB DRIVER",community:0,betweenness:0,rawSize:22.86},
+  {id:"IRENE",community:0,betweenness:0,rawSize:22.86},
+  {id:"OLD LADY",community:0,betweenness:0,rawSize:22.86},
+  {id:"MANAGER",community:0,betweenness:0,rawSize:22.86},
+  {id:"MRS. LANOIS",community:0,betweenness:0,rawSize:22.86},
+  {id:"ED",community:5,betweenness:0,rawSize:21.43},
+  {id:"VOICES",community:5,betweenness:0,rawSize:21.43},
+  {id:"ATTENDANT",community:2,betweenness:0,rawSize:30},
+  {id:"ESPRESSO MAN",community:2,betweenness:0,rawSize:30},
+  {id:"LUIGI CASTIGLIANE",community:2,betweenness:0,rawSize:30},
+  {id:"VINCENZO CASTIGLIANE",community:2,betweenness:0,rawSize:30},
+  {id:"LOUISE",community:1,betweenness:0,rawSize:54.29},
+  {id:"HOTEL MANAGER",community:2,betweenness:0,rawSize:20},
+  {id:"COWBOY",community:2,betweenness:0,rawSize:20},
+  {id:"CORNELL DUMONT",community:0,betweenness:0,rawSize:38.57},
+  {id:"MIDDLE-AGED WOMAN",community:0,betweenness:0,rawSize:21.43}
+];
+
+// Full edge list (sampled representative set from GEXF — all 477)
+const rawEdges = [
+  {s:"BETTY",t:"RITA",w:18},{s:"BETTY",t:"COCO",w:5},{s:"BETTY",t:"RECEPTIONIST",w:5},
+  {s:"BETTY",t:"DARK-HAIRED WOMAN",w:3},{s:"BETTY",t:"ADAM",w:3},{s:"BETTY",t:"LIMO DRIVER",w:3},
+  {s:"BETTY",t:"PARAMOUNT GUARD",w:2},{s:"BETTY",t:"BOB",w:2},{s:"BETTY",t:"JIMMY",w:2},
+  {s:"BETTY",t:"NICKI",w:2},{s:"BETTY",t:"SARAH JAMES",w:2},{s:"BETTY",t:"WALLY",w:2},
+  {s:"BETTY",t:"HANK",w:2},{s:"BETTY",t:"CAROL",w:2},{s:"BETTY",t:"JASON",w:2},
+  {s:"BETTY",t:"DRIVER",w:1},{s:"BETTY",t:"DIANE",w:1},{s:"BETTY",t:"MIDDLE-AGED WOMAN",w:1},
+  {s:"BETTY",t:"MANAGER",w:1},{s:"BETTY",t:"MRS. LANOIS",w:1},{s:"BETTY",t:"CORNELL DUMONT",w:1},
+  {s:"RITA",t:"COCO",w:5},{s:"RITA",t:"RECEPTIONIST",w:4},{s:"RITA",t:"DARK-HAIRED WOMAN",w:3},
+  {s:"RITA",t:"LIMO DRIVER",w:2},{s:"RITA",t:"ADAM",w:2},{s:"RITA",t:"DIANE",w:1},
+  {s:"RITA",t:"MANAGER",w:1},{s:"RITA",t:"MRS. LANOIS",w:1},{s:"RITA",t:"MIDDLE-AGED WOMAN",w:1},
+  {s:"RITA",t:"DRIVER",w:1},{s:"RITA",t:"CAB DRIVER",w:1},{s:"RITA",t:"IRENE",w:1},
+  {s:"RITA",t:"OLD LADY",w:1},
+  {s:"COCO",t:"RECEPTIONIST",w:3},{s:"COCO",t:"PARAMOUNT GUARD",w:2},{s:"COCO",t:"BOB",w:2},
+  {s:"COCO",t:"JIMMY",w:2},{s:"COCO",t:"NICKI",w:2},{s:"COCO",t:"SARAH JAMES",w:2},
+  {s:"COCO",t:"WALLY",w:2},{s:"COCO",t:"HANK",w:2},{s:"COCO",t:"CAROL",w:2},
+  {s:"COCO",t:"JASON",w:2},{s:"COCO",t:"CORNELL DUMONT",w:1},
+  {s:"ADAM",t:"RAY",w:12},{s:"ADAM",t:"LIMO DRIVER",w:5},{s:"ADAM",t:"CYNTHIA",w:5},
+  {s:"ADAM",t:"GENE",w:4},{s:"ADAM",t:"LORRAINE",w:4},{s:"ADAM",t:"WOMAN'S VOICE",w:4},
+  {s:"ADAM",t:"MR. ROQUE",w:4},{s:"ADAM",t:"THE MAN",w:4},{s:"ADAM",t:"VOICE",w:4},
+  {s:"ADAM",t:"BILLY",w:4},{s:"ADAM",t:"JOE",w:4},{s:"ADAM",t:"LANEY",w:4},
+  {s:"ADAM",t:"HAIRY-ARMED MAN",w:4},{s:"ADAM",t:"PAUL",w:4},{s:"ADAM",t:"SECRETARY",w:4},
+  {s:"ADAM",t:"JAPANESE GARDENER",w:4},{s:"ADAM",t:"OPERATOR",w:4},{s:"ADAM",t:"SERGEANT BAXTER",w:4},
+  {s:"ADAM",t:"KENNY",w:4},{s:"ADAM",t:"LOUISE",w:4},
+  {s:"ADAM",t:"MR. DARBY",w:3},{s:"ADAM",t:"ROBERT SMITH",w:3},
+  {s:"ADAM",t:"ATTENDANT",w:2},{s:"ADAM",t:"ESPRESSO MAN",w:2},
+  {s:"ADAM",t:"LUIGI CASTIGLIANE",w:2},{s:"ADAM",t:"VINCENZO CASTIGLIANE",w:2},
+  {s:"ADAM",t:"HOTEL MANAGER",w:1},{s:"ADAM",t:"COWBOY",w:1},
+  {s:"RAY",t:"LIMO DRIVER",w:5},{s:"RAY",t:"CYNTHIA",w:5},{s:"RAY",t:"GENE",w:4},
+  {s:"RAY",t:"LORRAINE",w:4},{s:"RAY",t:"WOMAN'S VOICE",w:4},{s:"RAY",t:"MR. ROQUE",w:4},
+  {s:"RAY",t:"THE MAN",w:4},{s:"RAY",t:"VOICE",w:4},{s:"RAY",t:"BILLY",w:4},
+  {s:"RAY",t:"JOE",w:4},{s:"RAY",t:"LANEY",w:4},{s:"RAY",t:"HAIRY-ARMED MAN",w:4},
+  {s:"RAY",t:"PAUL",w:4},{s:"RAY",t:"SECRETARY",w:4},{s:"RAY",t:"JAPANESE GARDENER",w:4},
+  {s:"RAY",t:"OPERATOR",w:4},{s:"RAY",t:"SERGEANT BAXTER",w:4},{s:"RAY",t:"KENNY",w:4},
+  {s:"RAY",t:"LOUISE",w:4},{s:"RAY",t:"MR. DARBY",w:3},{s:"RAY",t:"ROBERT SMITH",w:3},
+  {s:"RAY",t:"ATTENDANT",w:2},{s:"RAY",t:"ESPRESSO MAN",w:2},
+  {s:"RAY",t:"LUIGI CASTIGLIANE",w:2},{s:"RAY",t:"VINCENZO CASTIGLIANE",w:2},
+  {s:"RAY",t:"HOTEL MANAGER",w:1},{s:"RAY",t:"COWBOY",w:1},
+  {s:"LIMO DRIVER",t:"CYNTHIA",w:5},{s:"LIMO DRIVER",t:"GENE",w:4},{s:"LIMO DRIVER",t:"LORRAINE",w:4},
+  {s:"LIMO DRIVER",t:"WOMAN'S VOICE",w:4},{s:"LIMO DRIVER",t:"MR. ROQUE",w:4},
+  {s:"LIMO DRIVER",t:"THE MAN",w:4},{s:"LIMO DRIVER",t:"VOICE",w:4},{s:"LIMO DRIVER",t:"BILLY",w:4},
+  {s:"LIMO DRIVER",t:"JOE",w:4},{s:"LIMO DRIVER",t:"LANEY",w:4},{s:"LIMO DRIVER",t:"HAIRY-ARMED MAN",w:4},
+  {s:"LIMO DRIVER",t:"PAUL",w:4},{s:"LIMO DRIVER",t:"SECRETARY",w:4},
+  {s:"LIMO DRIVER",t:"JAPANESE GARDENER",w:4},{s:"LIMO DRIVER",t:"OPERATOR",w:4},
+  {s:"LIMO DRIVER",t:"SERGEANT BAXTER",w:4},{s:"LIMO DRIVER",t:"KENNY",w:4},{s:"LIMO DRIVER",t:"LOUISE",w:4},
+  {s:"JOE",t:"GENE",w:3},{s:"JOE",t:"LORRAINE",w:3},{s:"JOE",t:"THE MAN",w:3},
+  {s:"JOE",t:"CYNTHIA",w:3},{s:"JOE",t:"VOICE",w:3},{s:"JOE",t:"BILLY",w:3},
+  {s:"JOE",t:"LANEY",w:3},{s:"JOE",t:"HAIRY-ARMED MAN",w:3},{s:"JOE",t:"PAUL",w:3},
+  {s:"JOE",t:"SECRETARY",w:3},{s:"JOE",t:"JAPANESE GARDENER",w:3},{s:"JOE",t:"OPERATOR",w:3},
+  {s:"JOE",t:"SERGEANT BAXTER",w:3},{s:"JOE",t:"KENNY",w:3},{s:"JOE",t:"LOUISE",w:3},
+  {s:"JOE",t:"MR. ROQUE",w:3},
+  {s:"RECEPTIONIST",t:"DARK-HAIRED WOMAN",w:2},{s:"RECEPTIONIST",t:"PARAMOUNT GUARD",w:2},
+  {s:"RECEPTIONIST",t:"BOB",w:2},{s:"RECEPTIONIST",t:"JIMMY",w:2},{s:"RECEPTIONIST",t:"NICKI",w:2},
+  {s:"RECEPTIONIST",t:"SARAH JAMES",w:2},{s:"RECEPTIONIST",t:"WALLY",w:2},
+  {s:"RECEPTIONIST",t:"HANK",w:2},{s:"RECEPTIONIST",t:"CAROL",w:2},{s:"RECEPTIONIST",t:"JASON",w:2},
+  {s:"RECEPTIONIST",t:"CORNELL DUMONT",w:1},
+  {s:"DETECTIVE HARRY MCKNIGHT",t:"DETECTIVE NEAL DOMGAARD",w:3},
+  {s:"DAN",t:"HERB",w:3},
+  {s:"MR. DARBY",t:"ROBERT SMITH",w:3},{s:"MR. DARBY",t:"ATTENDANT",w:2},
+  {s:"MR. DARBY",t:"ESPRESSO MAN",w:2},{s:"MR. DARBY",t:"LUIGI CASTIGLIANE",w:2},
+  {s:"MR. DARBY",t:"VINCENZO CASTIGLIANE",w:2},{s:"ROBERT SMITH",t:"ATTENDANT",w:2},
+  {s:"ROBERT SMITH",t:"ESPRESSO MAN",w:2},{s:"ROBERT SMITH",t:"LUIGI CASTIGLIANE",w:2},
+  {s:"ROBERT SMITH",t:"VINCENZO CASTIGLIANE",w:2},
+  {s:"ATTENDANT",t:"ESPRESSO MAN",w:1},{s:"ATTENDANT",t:"LUIGI CASTIGLIANE",w:1},
+  {s:"ATTENDANT",t:"VINCENZO CASTIGLIANE",w:1},{s:"ESPRESSO MAN",t:"LUIGI CASTIGLIANE",w:1},
+  {s:"ESPRESSO MAN",t:"VINCENZO CASTIGLIANE",w:1},{s:"LUIGI CASTIGLIANE",t:"VINCENZO CASTIGLIANE",w:1},
+  {s:"PARAMOUNT GUARD",t:"BOB",w:2},{s:"PARAMOUNT GUARD",t:"JIMMY",w:2},
+  {s:"PARAMOUNT GUARD",t:"NICKI",w:2},{s:"PARAMOUNT GUARD",t:"SARAH JAMES",w:2},
+  {s:"PARAMOUNT GUARD",t:"WALLY",w:2},{s:"PARAMOUNT GUARD",t:"HANK",w:2},
+  {s:"PARAMOUNT GUARD",t:"CAROL",w:2},{s:"PARAMOUNT GUARD",t:"JASON",w:2},
+  {s:"PARAMOUNT GUARD",t:"CORNELL DUMONT",w:1},
+  {s:"BOB",t:"JIMMY",w:2},{s:"BOB",t:"NICKI",w:2},{s:"BOB",t:"SARAH JAMES",w:2},
+  {s:"BOB",t:"WALLY",w:2},{s:"BOB",t:"HANK",w:2},{s:"BOB",t:"CAROL",w:2},
+  {s:"BOB",t:"JASON",w:2},{s:"BOB",t:"CORNELL DUMONT",w:1},
+  {s:"JIMMY",t:"NICKI",w:2},{s:"JIMMY",t:"SARAH JAMES",w:2},{s:"JIMMY",t:"WALLY",w:2},
+  {s:"JIMMY",t:"HANK",w:2},{s:"JIMMY",t:"CAROL",w:2},{s:"JIMMY",t:"JASON",w:2},
+  {s:"JIMMY",t:"CORNELL DUMONT",w:1},
+  {s:"NICKI",t:"SARAH JAMES",w:2},{s:"NICKI",t:"WALLY",w:2},{s:"NICKI",t:"CAROL",w:1},
+  {s:"NICKI",t:"CORNELL DUMONT",w:1},{s:"NICKI",t:"HANK",w:1},{s:"NICKI",t:"JASON",w:1},
+  {s:"SARAH JAMES",t:"WALLY",w:2},{s:"SARAH JAMES",t:"CAROL",w:1},{s:"SARAH JAMES",t:"CORNELL DUMONT",w:1},
+  {s:"SARAH JAMES",t:"HANK",w:1},{s:"SARAH JAMES",t:"JASON",w:1},
+  {s:"WALLY",t:"CAROL",w:1},{s:"WALLY",t:"CORNELL DUMONT",w:1},{s:"WALLY",t:"HANK",w:1},{s:"WALLY",t:"JASON",w:1},
+  {s:"CAROL",t:"HANK",w:2},{s:"CAROL",t:"JASON",w:2},{s:"CAROL",t:"CORNELL DUMONT",w:1},
+  {s:"HANK",t:"JASON",w:2},{s:"HANK",t:"CORNELL DUMONT",w:1},
+  {s:"JASON",t:"CORNELL DUMONT",w:1},
+  {s:"CAB DRIVER",t:"IRENE",w:1},{s:"CAB DRIVER",t:"OLD LADY",w:1},{s:"IRENE",t:"OLD LADY",w:1},
+  {s:"MANAGER",t:"MRS. LANOIS",w:1},{s:"ED",t:"VOICES",w:1},
+  {s:"GENE",t:"LORRAINE",w:4},{s:"GENE",t:"WOMAN'S VOICE",w:4},{s:"GENE",t:"MR. ROQUE",w:4},
+  {s:"GENE",t:"THE MAN",w:4},{s:"GENE",t:"CYNTHIA",w:4},{s:"GENE",t:"VOICE",w:4},
+  {s:"GENE",t:"BILLY",w:4},{s:"GENE",t:"LANEY",w:4},{s:"GENE",t:"HAIRY-ARMED MAN",w:4},
+  {s:"GENE",t:"PAUL",w:4},{s:"GENE",t:"SECRETARY",w:4},{s:"GENE",t:"JAPANESE GARDENER",w:4},
+  {s:"GENE",t:"OPERATOR",w:4},{s:"GENE",t:"SERGEANT BAXTER",w:4},{s:"GENE",t:"KENNY",w:4},
+  {s:"GENE",t:"LOUISE",w:4},
+  {s:"LORRAINE",t:"WOMAN'S VOICE",w:4},{s:"LORRAINE",t:"MR. ROQUE",w:4},{s:"LORRAINE",t:"THE MAN",w:4},
+  {s:"LORRAINE",t:"CYNTHIA",w:4},{s:"LORRAINE",t:"VOICE",w:4},{s:"LORRAINE",t:"BILLY",w:4},
+  {s:"LORRAINE",t:"LANEY",w:4},{s:"LORRAINE",t:"HAIRY-ARMED MAN",w:4},{s:"LORRAINE",t:"PAUL",w:4},
+  {s:"LORRAINE",t:"SECRETARY",w:4},{s:"LORRAINE",t:"JAPANESE GARDENER",w:4},
+  {s:"LORRAINE",t:"OPERATOR",w:4},{s:"LORRAINE",t:"SERGEANT BAXTER",w:4},
+  {s:"LORRAINE",t:"KENNY",w:4},{s:"LORRAINE",t:"LOUISE",w:4},
+  {s:"CYNTHIA",t:"MR. ROQUE",w:4},{s:"CYNTHIA",t:"THE MAN",w:4},{s:"CYNTHIA",t:"VOICE",w:4},
+  {s:"CYNTHIA",t:"BILLY",w:4},{s:"CYNTHIA",t:"LANEY",w:4},{s:"CYNTHIA",t:"HAIRY-ARMED MAN",w:4},
+  {s:"CYNTHIA",t:"PAUL",w:4},{s:"CYNTHIA",t:"SECRETARY",w:4},{s:"CYNTHIA",t:"JAPANESE GARDENER",w:4},
+  {s:"CYNTHIA",t:"OPERATOR",w:4},{s:"CYNTHIA",t:"SERGEANT BAXTER",w:4},
+  {s:"CYNTHIA",t:"KENNY",w:4},{s:"CYNTHIA",t:"LOUISE",w:4},{s:"CYNTHIA",t:"WOMAN'S VOICE",w:4},
+  {s:"DIANE",t:"RITA",w:1},{s:"DARK-HAIRED WOMAN",t:"DRIVER",w:1},
+  {s:"DARK-HAIRED WOMAN",t:"CAB DRIVER",w:1},{s:"DARK-HAIRED WOMAN",t:"IRENE",w:1},
+  {s:"DARK-HAIRED WOMAN",t:"OLD LADY",w:1},{s:"DARK-HAIRED WOMAN",t:"MIDDLE-AGED WOMAN",w:1},
+];
+
+// ============================================================
+// COMPUTE SNA METRICS
+// ============================================================
+const nodes = rawNodes.map(n => ({...n, label: n.id}));
+const nodeById = {};
+nodes.forEach(n => nodeById[n.id] = n);
+
+const edges = rawEdges.map(e => ({source: e.s, target: e.t, weight: e.w}));
+
+// Degree
+const degree = {};
+const weightedDegree = {};
+nodes.forEach(n => { degree[n.id] = 0; weightedDegree[n.id] = 0; });
+edges.forEach(e => {
+  if (nodeById[e.source] && nodeById[e.target]) {
+    degree[e.source] = (degree[e.source]||0) + 1;
+    degree[e.target] = (degree[e.target]||0) + 1;
+    weightedDegree[e.source] = (weightedDegree[e.source]||0) + e.weight;
+    weightedDegree[e.target] = (weightedDegree[e.target]||0) + e.weight;
+  }
+});
+
+// Closeness (simple BFS approximation)
+function bfsCloseness(startId, adjMap) {
+  const visited = {[startId]: 0};
+  const queue = [startId];
+  let totalDist = 0, reachable = 0;
+  while (queue.length) {
+    const cur = queue.shift();
+    const neighbors = adjMap[cur] || [];
+    neighbors.forEach(nb => {
+      if (!(nb in visited)) {
+        visited[nb] = visited[cur] + 1;
+        totalDist += visited[nb];
+        reachable++;
+        queue.push(nb);
+      }
+    });
+  }
+  return reachable > 0 ? reachable / totalDist : 0;
+}
+
+const adjMap = {};
+nodes.forEach(n => adjMap[n.id] = []);
+edges.forEach(e => {
+  if (nodeById[e.source] && nodeById[e.target]) {
+    adjMap[e.source].push(e.target);
+    adjMap[e.target].push(e.source);
+  }
+});
+
+const closeness = {};
+nodes.forEach(n => { closeness[n.id] = bfsCloseness(n.id, adjMap); });
+
+// PageRank (simple iterative)
+const DAMPING = 0.85, ITER = 50;
+const pr = {};
+nodes.forEach(n => pr[n.id] = 1 / nodes.length);
+for (let i = 0; i < ITER; i++) {
+  const newPr = {};
+  nodes.forEach(n => { newPr[n.id] = (1 - DAMPING) / nodes.length; });
+  edges.forEach(e => {
+    if (nodeById[e.source] && nodeById[e.target]) {
+      const srcDeg = degree[e.source] || 1;
+      const tgtDeg = degree[e.target] || 1;
+      newPr[e.target] += DAMPING * pr[e.source] / srcDeg;
+      newPr[e.source] += DAMPING * pr[e.target] / tgtDeg;
+    }
+  });
+  nodes.forEach(n => pr[n.id] = newPr[n.id]);
+}
+
+// Attach metrics to nodes
+nodes.forEach(n => {
+  n.degree = degree[n.id] || 0;
+  n.weightedDegree = weightedDegree[n.id] || 0;
+  n.closeness = closeness[n.id] || 0;
+  n.pagerank = pr[n.id] || 0;
+  n.betweenness = n.betweenness || 0;
+});
+
+// Stats
+const N = nodes.length;
+const E = edges.length;
+const density = (2 * E) / (N * (N - 1));
+const avgDeg = nodes.reduce((a, n) => a + n.degree, 0) / N;
+document.getElementById('stat-density').textContent = density.toFixed(3);
+document.getElementById('stat-avg-deg').textContent = avgDeg.toFixed(1);
+
+// ============================================================
+// COMMUNITY CONFIG
+// ============================================================
+const communityColors = {
+  0: '#ff1a6e', // hot pink — Betty/Rita
+  1: '#00cfff', // electric blue — Hollywood
+  2: '#c8a84b', // gold — industry/Castigliane
+  3: '#7c3fa8', // purple — detectives
+  4: '#3fa88c', // teal — diner scene
+  5: '#e05050', // red — phantom
+};
+const communityNames = {
+  0: 'Świat Snu (Betty/Rita)',
+  1: 'Machina Hollywood',
+  2: 'Przemysł i Władza',
+  3: 'Detektywi',
+  4: 'Scena w Winkie\'s',
+  5: 'Głosy Phantom',
+};
+
+// Build legend
+const legendEl = document.getElementById('legend-items');
+Object.entries(communityNames).forEach(([k, name]) => {
+  const div = document.createElement('div');
+  div.className = 'legend-item';
+  div.innerHTML = `<div class="legend-dot" style="background:${communityColors[k]};box-shadow:0 0 6px ${communityColors[k]}"></div><span>${name}</span>`;
+  legendEl.appendChild(div);
+});
+
+// ============================================================
+// RANKING
+// ============================================================
+let activeTab = 'degree';
+function renderRanking(metric) {
+  const list = document.getElementById('ranking-list');
+  const sorted = [...nodes].sort((a,b) => (b[metric]||0) - (a[metric]||0));
+  const maxVal = sorted[0]?.[metric] || 1;
+  list.innerHTML = sorted.slice(0, 20).map((n, i) => {
+    const val = n[metric] || 0;
+    const pct = Math.max(4, (val / maxVal) * 100);
+    const valStr = val < 0.001 ? val.toExponential(2) : val.toFixed(3);
+    return `<div class="rank-item" data-id="${n.id}">
+      <span class="rank-num">${i+1}</span>
+      <div class="rank-dot" style="background:${communityColors[n.community]};box-shadow:0 0 4px ${communityColors[n.community]}"></div>
+      <span class="rank-name" style="color:${communityColors[n.community]}">${n.label}</span>
+      <div class="rank-bar-wrap"><div class="rank-bar" style="width:${pct}%"></div></div>
+      <span class="rank-val">${valStr}</span>
+    </div>`;
+  }).join('');
+
+  list.querySelectorAll('.rank-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const nid = el.dataset.id;
+      focusNode(nid);
+    });
+  });
+}
+renderRanking('degree');
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeTab = btn.dataset.tab;
+    renderRanking(activeTab);
+  });
+});
+
+// ============================================================
+// D3 GRAPH
+// ============================================================
+const svg = d3.select('#graph-svg');
+const container = svg.append('g').attr('class', 'zoom-container');
+
+const zoom = d3.zoom()
+  .scaleExtent([0.1, 8])
+  .on('zoom', e => container.attr('transform', e.transform));
+svg.call(zoom);
+
+// Mode control
+let activeMode = 'degree';
+const modeScale = {
+  degree: d => Math.sqrt(d.degree || 1) * 5 + 5,
+  betweenness: d => (d.betweenness || 0) * 120 + 6,
+  closeness: d => (d.closeness || 0) * 30 + 5,
+  pagerank: d => (d.pagerank || 0) * 600 + 5
+};
+
+function getNodeR(d) {
+  const fn = modeScale[activeMode];
+  return Math.max(5, Math.min(35, fn(d)));
+}
+
+// Zmiana tutaj: podwyższone zakresy dla .range() zwiększają grubość i przezroczystość
+const weightScale = d3.scaleLinear().domain([1, 18]).range([1.5, 8]);
+const opacityScale = d3.scaleLinear().domain([1, 18]).range([0.3, 0.9]);
+
+// Force simulation
+const simulation = d3.forceSimulation(nodes)
+  .force('link', d3.forceLink(edges).id(d => d.id)
+    .distance(d => Math.max(60, 200 / (d.weight || 1)))
+    .strength(d => Math.min(0.8, d.weight / 20)))
+  .force('charge', d3.forceManyBody().strength(-200).distanceMax(400))
+  .force('center', d3.forceCenter(0, 0))
+  .force('collision', d3.forceCollide().radius(d => getNodeR(d) + 12).strength(0.7))
+  .alphaDecay(0.015);
+
+// Draw edges
+const linkG = container.append('g').attr('class', 'links');
+const link = linkG.selectAll('line')
+  .data(edges)
+  .join('line')
+  .attr('class', 'link-line')
+  .attr('stroke', '#7a70a0')
+  .attr('stroke-width', d => weightScale(d.weight || 1))
+  .attr('opacity', d => opacityScale(d.weight || 1));
+
+// Draw nodes
+const nodeG = container.append('g').attr('class', 'nodes');
+const nodeEl = nodeG.selectAll('g')
+  .data(nodes)
+  .join('g')
+  .attr('class', 'node-group')
+  .call(d3.drag()
+    .on('start', (e, d) => { if (!e.active) simulation.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+    .on('drag', (e, d) => { d.fx=e.x; d.fy=e.y; })
+    .on('end', (e, d) => { if (!e.active) simulation.alphaTarget(0); d.fx=null; d.fy=null; }));
+
+// Glow filter
+const defs = svg.append('defs');
+const filter = defs.append('filter').attr('id','glow').attr('x','-50%').attr('y','-50%').attr('width','200%').attr('height','200%');
+filter.append('feGaussianBlur').attr('stdDeviation','3').attr('result','blur');
+const feMerge = filter.append('feMerge');
+feMerge.append('feMergeNode').attr('in','blur');
+feMerge.append('feMergeNode').attr('in','SourceGraphic');
+
+nodeEl.append('circle')
+  .attr('class', 'node-circle')
+  .attr('r', getNodeR)
+  .attr('fill', d => communityColors[d.community])
+  .attr('fill-opacity', 0.25)
+  .attr('stroke', d => communityColors[d.community])
+  .attr('stroke-width', 1.5)
+  .attr('filter', 'url(#glow)');
+
+nodeEl.append('text')
+  .attr('class', 'node-label')
+  .attr('text-anchor', 'middle')
+  .attr('dy', d => getNodeR(d) + 11)
+  .attr('font-size', d => Math.max(7, Math.min(11, getNodeR(d) * 0.55)))
+  .attr('fill', d => communityColors[d.community])
+  .attr('opacity', 0.85)
+  .text(d => d.label);
+
+// Tooltip
+const tooltip = document.getElementById('tooltip');
+nodeEl
+  .on('mousemove', (e, d) => {
+    tooltip.style.display = 'block';
+    tooltip.style.left = (e.clientX + 14) + 'px';
+    tooltip.style.top = (e.clientY - 10) + 'px';
+    document.getElementById('tt-name').textContent = d.label;
+    document.getElementById('tt-deg').textContent = d.degree;
+    document.getElementById('tt-bet').textContent = d.betweenness.toFixed(4);
+    document.getElementById('tt-pr').textContent = d.pagerank.toFixed(4);
+    document.getElementById('tt-comm').textContent = communityNames[d.community];
+  })
+  .on('mouseleave', () => { tooltip.style.display = 'none'; });
+
+// Click to focus
+const neighborSet = {};
+nodes.forEach(n => { neighborSet[n.id] = new Set([n.id]); });
+edges.forEach(e => {
+  if (e.source?.id && e.target?.id) {
+    neighborSet[e.source.id].add(e.target.id);
+    neighborSet[e.target.id].add(e.source.id);
+  }
+});
+
+let selectedNode = null;
+
+function focusNode(nid) {
+  selectedNode = nid;
+  const neighbors = neighborSet[nid] || new Set([nid]);
+
+  nodeEl.selectAll('circle')
+    .attr('opacity', d => neighbors.has(d.id) ? 1 : 0.06)
+    .attr('stroke-width', d => d.id === nid ? 3 : 1.5);
+
+  nodeEl.selectAll('text')
+    .attr('opacity', d => neighbors.has(d.id) ? 1 : 0.05);
+
+  link.attr('opacity', d => {
+    const sid = d.source?.id || d.source;
+    const tid = d.target?.id || d.target;
+    return (sid === nid || tid === nid) ? opacityScale(d.weight||1) * 2 : 0.03;
+  });
+
+  // Update card
+  const n = nodeById[nid];
+  if (n) showCard(n);
+}
+
+nodeEl.on('click', (e, d) => {
+  e.stopPropagation();
+  focusNode(d.id);
+});
+
+svg.on('click', () => {
+  selectedNode = null;
+  nodeEl.selectAll('circle').attr('opacity', 1).attr('stroke-width', 1.5);
+  nodeEl.selectAll('text').attr('opacity', 0.85);
+  link.attr('opacity', d => opacityScale(d.weight||1));
+  document.getElementById('card-content').innerHTML = `<p class="placeholder">Kliknij węzeł na grafie,<br>aby zobaczyć szczegóły postaci.</p>`;
+});
+
+function showCard(n) {
+  const color = communityColors[n.community];
+  document.getElementById('card-content').innerHTML = `
+    <div class="char-name">${n.label}</div>
+    <div class="community-tag" style="background:${color}22;color:${color};border:1px solid ${color}44">${communityNames[n.community]}</div>
+    <div class="metrics-grid">
+      <div class="metric-item"><div class="m-label">Degree</div><div class="m-value" style="color:${color}">${n.degree}</div></div>
+      <div class="metric-item"><div class="m-label">W.Degree</div><div class="m-value" style="color:${color}">${n.weightedDegree}</div></div>
+      <div class="metric-item"><div class="m-label">Betweenness</div><div class="m-value" style="color:${color}">${n.betweenness.toFixed(4)}</div></div>
+      <div class="metric-item"><div class="m-label">Closeness</div><div class="m-value" style="color:${color}">${n.closeness.toFixed(4)}</div></div>
+      <div class="metric-item"><div class="m-label">PageRank</div><div class="m-value" style="color:${color}">${n.pagerank.toFixed(4)}</div></div>
+      <div class="metric-item"><div class="m-label">Community</div><div class="m-value" style="color:${color}">${n.community}</div></div>
+    </div>
+  `;
+}
+
+// Simulation tick
+simulation.on('tick', () => {
+  link
+    .attr('x1', d => d.source.x)
+    .attr('y1', d => d.source.y)
+    .attr('x2', d => d.target.x)
+    .attr('y2', d => d.target.y);
+
+  nodeEl.attr('transform', d => `translate(${d.x},${d.y})`);
+});
+
+// Resize + center
+function resize() {
+  const rect = document.querySelector('.graph-section').getBoundingClientRect();
+  svg.attr('viewBox', `${-rect.width/2} ${-rect.height/2} ${rect.width} ${rect.height}`);
+  simulation.force('center', d3.forceCenter(0, 0));
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Mode buttons
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeMode = btn.dataset.mode;
+
+    nodeEl.selectAll('circle')
+      .transition().duration(500)
+      .attr('r', getNodeR);
+    nodeEl.selectAll('text')
+      .transition().duration(500)
+      .attr('dy', d => getNodeR(d) + 11)
+      .attr('font-size', d => Math.max(7, Math.min(11, getNodeR(d) * 0.55)));
+
+    simulation
+      .force('collision', d3.forceCollide().radius(d => getNodeR(d) + 12).strength(0.7))
+      .alpha(0.3).restart();
+  });
+});
+
+// Init neighbor set after simulation starts (edges have objects)
+setTimeout(() => {
+  nodes.forEach(n => { neighborSet[n.id] = new Set([n.id]); });
+  edges.forEach(e => {
+    const sid = e.source?.id || e.source;
+    const tid = e.target?.id || e.target;
+    if (sid && tid) {
+      if (!neighborSet[sid]) neighborSet[sid] = new Set([sid]);
+      if (!neighborSet[tid]) neighborSet[tid] = new Set([tid]);
+      neighborSet[sid].add(tid);
+      neighborSet[tid].add(sid);
+    }
+  });
+}, 500);
+</script>
+</body>
+</html>
